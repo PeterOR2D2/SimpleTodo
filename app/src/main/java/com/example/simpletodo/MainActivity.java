@@ -90,7 +90,8 @@ public class MainActivity extends AppCompatActivity {
     //Handle the result of main activity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (resultCode == RESULT_OK && requestCode == EDIT_TEXT_CODE){
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == EDIT_TEXT_CODE) {
             //Retrieve the updated text value
             String itemText = data.getStringExtra(KEY_ITEM_TEXT);
             //extract the original position of the edited item from the position key
@@ -102,8 +103,7 @@ public class MainActivity extends AppCompatActivity {
             //persist the changes
             saveItems();
             Toast.makeText(getApplicationContext(), "Item updated successfully!", Toast.LENGTH_SHORT).show();
-        }
-        else {
+        } else {
             Log.w("MainActivity", "Unknown call to onActivityResult");
         }
     }
